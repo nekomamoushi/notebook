@@ -1,27 +1,22 @@
 # Import JSON in TypeScript
 
-To import JSON into your TypeScript code, you need to add the following code to a typings file.
-
+To import JSON into your TypeScript code, you need to add the following code in `tsconfig.json`.
 
 ```
-// This will allow you to load `.json` files from disk
-declare module "*.json"
-{ const value: any;
-  export default value;
-}
-
-// This will allow you to load JSON from remote URL responses
-declare module "json!*"
-{ const value: any;
-  export default value;
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
 }
 ```
 
 After doing this, you can do the following in TypeScript.
 
 ```
-import * as graph from './data/graph.json';
-import data from "json!http://foo.com/data_returns_json_response/";
+import graph from './data/graph.json';
 ```
 
 You can then use graph and data as JSON objects in your TypeScript code.
